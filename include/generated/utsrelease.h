@@ -1,0 +1,1 @@
+#define UTS_RELEASE "2.6.35.10BDA-Lexikon-2011-12-31"
