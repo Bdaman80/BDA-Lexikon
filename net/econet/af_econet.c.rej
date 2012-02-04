@@ -1,0 +1,15 @@
+--- net/econet/af_econet.c
++++ net/econet/af_econet.c
+@@ -661,8 +661,10 @@
+ 	err = 0;
+ 	switch (cmd) {
+ 	case SIOCSIFADDR:
+-		if (!capable(CAP_NET_ADMIN))
+-			return -EPERM;
++		if (!capable(CAP_NET_ADMIN)) {
++			err = -EPERM;
++			break;
++		}
+ 
+ 		edev = dev->ec_ptr;
+ 		if (edev == NULL) {

@@ -1,0 +1,11 @@
+--- kernel/sched.c
++++ kernel/sched.c
+@@ -564,7 +564,7 @@
+ 	 * A queue event has occurred, and we're going to schedule.  In
+ 	 * this case, we can save a useless back to back clock update.
+ 	 */
+-	if (test_tsk_need_resched(p))
++	if (rq->curr->se.on_rq && test_tsk_need_resched(rq->curr))
+ 		rq->skip_clock_update = 1;
+ }
+ 
