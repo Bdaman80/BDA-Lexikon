@@ -1,0 +1,21 @@
+--- arch/x86/kvm/svm.c
++++ arch/x86/kvm/svm.c
+@@ -3184,10 +3184,15 @@
+ 	vcpu->arch.regs[VCPU_REGS_RSP] = svm->vmcb->save.rsp;
+ 	vcpu->arch.regs[VCPU_REGS_RIP] = svm->vmcb->save.rip;
+ 
+-	kvm_load_ldt(ldt_selector);
+-	kvm_load_fs(fs_selector);
+-	kvm_load_gs(gs_selector);
+ 	load_host_msrs(vcpu);
++	kvm_load_ldt(ldt_selector);
++	loadsegment(fs, fs_selector);
++#ifdef CONFIG_X86_64
++	load_gs_index(gs_selector);
++	wrmsrl(MSR_KERNEL_GS_BASE, current->thread.gs);
++#else
++	loadsegment(gs, gs_selector);
++#endif
+ 
+ 	reload_tss(vcpu);
+ 
