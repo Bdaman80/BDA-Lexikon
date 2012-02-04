@@ -1,0 +1,11 @@
+--- net/can/bcm.c
++++ net/can/bcm.c
+@@ -125,7 +125,7 @@
+ 	struct list_head tx_ops;
+ 	unsigned long dropped_usr_msgs;
+ 	struct proc_dir_entry *bcm_proc_read;
+-	char procname [20]; /* pointer printed in ASCII with \0 */
++	char procname [32]; /* inode number in decimal with \0 */
+ };
+ 
+ static inline struct bcm_sock *bcm_sk(const struct sock *sk)
