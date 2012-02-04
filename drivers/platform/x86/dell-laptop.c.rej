@@ -1,0 +1,8 @@
+--- drivers/platform/x86/dell-laptop.c
++++ drivers/platform/x86/dell-laptop.c
+@@ -634,4 +640,5 @@
+ MODULE_DESCRIPTION("Dell laptop driver");
+ MODULE_LICENSE("GPL");
+ MODULE_ALIAS("dmi:*svnDellInc.:*:ct8:*");
++MODULE_ALIAS("dmi:*svnDellInc.:*:ct9:*");
+ MODULE_ALIAS("dmi:*svnDellComputerCorporation.:*:ct8:*");
